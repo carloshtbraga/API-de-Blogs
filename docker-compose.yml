@@ -71,4 +71,4 @@ networks:
 # rodando em segundo plano, bem como tornam possível o uso do comando
 # `docker attach`, já deixando o terminal atual acoplado ao container, direto
 # no bash. Apesar disso, utilizar o attach mais de uma vez irá replicar o
-# terminal, portanto é melhor utilizar o comando `docker exec`.
+# terminal, portanto é melhor utilizar o comando `docker exec`
