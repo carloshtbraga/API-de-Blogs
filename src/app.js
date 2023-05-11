@@ -1,15 +1,18 @@
 const express = require('express');
+const { loginController } = require('./controllers');
+const { loginValidation } = require('./middlewares/loginValidation');
 
 // ...
 
 const app = express();
+app.use(express.json());
 
 // não remova ou mova esse endpoint
 app.get('/', (_request, response) => {
   response.send('Funcionando');
 });
 
-app.use(express.json());
+app.post('/login', loginValidation, loginController.login);
 
 // ...
 
