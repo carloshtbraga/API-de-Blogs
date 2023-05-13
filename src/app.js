@@ -2,6 +2,7 @@ const express = require('express');
 const { loginController, userController } = require('./controllers');
 const { loginValidation } = require('./middlewares/loginValidation');
 const { userPostValidation, userEmailValidation } = require('./middlewares/userPostValidation');
+const { tokenVerifier } = require('./utils/tokenTable');
 
 // ...
 
@@ -14,6 +15,7 @@ app.get('/', (_request, response) => {
 });
 
 app.post('/login', loginValidation, loginController.login);
+app.get('/user', tokenVerifier, userController.getAllUsers);
 app.post('/user', userPostValidation, userEmailValidation, userController.createNewUser);
 // ...
 
