@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
 // Category.associate = (models) => {
-//     Category.hasMany(models.Blog_Post, {
+//     Category.hasMany(models.BlogPost, {
 //       foreignKey: "id",
 //       as: "blog_posts",
 //     });
@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 //       foreignKey: "id",
 //       as: "users",
 //     });
-//   };
+  // };
 
 return Category;
 };
