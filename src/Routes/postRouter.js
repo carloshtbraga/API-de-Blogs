@@ -5,7 +5,7 @@ const { postOwner } = require('../middlewares/postOwner');
 const { postValidation } = require('../middlewares/postValidation');
 
 const router = express.Router();
-
+router.get('/post/search', tokenVerifier, blogPostController.searchPostByParams);
 router.get('/post', tokenVerifier, blogPostController.getAllPosts);
 router.get('/post/:id', tokenVerifier, blogPostController.getPostById);
 router.put('/post/:id', tokenVerifier, postValidation, postOwner, blogPostController.updatePost);

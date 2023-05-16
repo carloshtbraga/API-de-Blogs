@@ -25,9 +25,16 @@ const deletePost = async (req, res) => {
     return res.sendStatus(204);
 };
 
+const searchPostByParams = async (req, res) => {
+    const { q } = req.query;
+    const post = await blogPostService.searchPostByParams(q);
+    return res.status(200).json(post);
+};
+
 module.exports = {
     getAllPosts,
     getPostById,
     updatePost,
     deletePost,
+    searchPostByParams,
 };
