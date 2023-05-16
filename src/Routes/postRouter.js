@@ -9,6 +9,6 @@ router.get('/post/search', tokenVerifier, blogPostController.searchPostByParams)
 router.get('/post', tokenVerifier, blogPostController.getAllPosts);
 router.get('/post/:id', tokenVerifier, blogPostController.getPostById);
 router.put('/post/:id', tokenVerifier, postValidation, postOwner, blogPostController.updatePost);
-router.delete('/post/:id', tokenVerifier, postOwner, blogPostController.deletePost);
+router.delete('/post/:id', tokenVerifier, blogPostController.deletePost);
 
 module.exports = router;

@@ -15,6 +15,11 @@ const tokenGenerator = (email) => {
   return token;
 };
 
+const verifier = (token) => {
+  const user = jwt.verify(token, process.env.JWT_SECRET);
+  return user;
+}; 
+
 const tokenVerifier = (req, res, next) => {
   const token = req.headers.authorization;
   if (!token) {
@@ -29,4 +34,4 @@ const tokenVerifier = (req, res, next) => {
   }
 };
 
-module.exports = { tokenGenerator, tokenVerifier };
+module.exports = { tokenGenerator, tokenVerifier, verifier };
