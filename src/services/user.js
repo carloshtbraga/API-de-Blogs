@@ -1,3 +1,4 @@
+const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 
 const createNewUser = async ({ displayName, email, password }) =>
@@ -13,8 +14,15 @@ const getUserById = async (id) => {
   return { type: null, message: user };
 };
 
+const deleteUser = async (token) => {
+  const email = jwt.decode(token, { complete: true }).payload.username;
+  await User.destroy({ where: { email } });
+  return true;
+};
+
 module.exports = {
     createNewUser,
     getAllUsers,
     getUserById,
+    deleteUser,
 };

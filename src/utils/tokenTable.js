@@ -22,7 +22,7 @@ const tokenVerifier = (req, res, next) => {
   }
   try {
     const payload = jwt.verify(token, JWT_SECRET);
-    req.user = payload;
+    req.headers.Authorization = payload;
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Expired or invalid token' });
