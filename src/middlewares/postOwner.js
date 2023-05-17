@@ -9,15 +9,15 @@ const postOwner = async (req, res, next) => {
   });
   const user = await User.findOne({
     where: { email: tokenCheck.payload.username },
+    attributes: { exclude: ['password'] }, 
   });
   const post = await BlogPost.findByPk(id);
-  const isOwner = user.dataValues.id === post.dataValues.userId;
-  console.log('POSTTTTTTTTT', post);
   if (!post) {
       return res.status(404).json({
           message: 'Post does not exist',
         });
     }
+  const isOwner = user.dataValues.id === post.dataValues.user_id;
   if (!isOwner) return res.status(401).json({ message: 'Unauthorized user' }); 
   
   next();

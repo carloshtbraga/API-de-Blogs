@@ -30,19 +30,7 @@ const post = await getPostById(id);
 return post;
 };
 
-const oi = async (id) => {
-const post = await BlogPost.findOne({ where: { id }, include: { model: User, as: 'user' } });
-return post;
-};
-
-const deletePost = async (id, user) => {
-  const post = await oi(id);
-  if (!post) return { type: 'oi', message: 'Post does not exist' };
-  console.log('postUserDataValuesEmail', post.user.dataValues.email);
-  console.log('user', user.username);
-  if ((post.user.dataValues.email !== user.username)) { 
-    return { type: 'tchau', message: 'Unauthorized user' }; 
-  }
+const deletePost = async (id) => {
  await BlogPost.destroy({ where: { id } });
  return { type: null, message: '' };
 };

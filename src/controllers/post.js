@@ -1,5 +1,4 @@
 const { blogPostService } = require('../services');
-const { verifier } = require('../utils/tokenTable');
 
 const getAllPosts = async (req, res) => {
     const posts = await blogPostService.getAllPosts();
@@ -22,14 +21,8 @@ const updatePost = async (req, res) => {
 
 const deletePost = async (req, res) => {
     const id = Number(req.params.id);
-    const token = req.headers.authorization;
-    const user = verifier(token);    
-
-    const { type, message } = await blogPostService.deletePost(id, user);
-    if (type === 'oi') return res.status(404).json({ message });
-    if (type === 'tchau') return res.status(401).json({ message });
-
-    return res.status(204).json({ message });
+    const { type, message } = await blogPostService.deletePost(id);
+    if (!type) { return res.status(204).json({ message }); }
 };
 
 const searchPostByParams = async (req, res) => {
