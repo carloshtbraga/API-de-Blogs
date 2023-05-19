@@ -17,9 +17,11 @@ module.exports = {
       published: {
         type: Sequelize.DATE,
         allowNull: false,
+        defaultValue: Sequelize.fn('now')
       },
       updated: {
-         type: Sequelize.DATE 
+         type: Sequelize.DATE,
+         defaultValue: Sequelize.fn('now')
         },
       userId: {
         type: Sequelize.INTEGER,

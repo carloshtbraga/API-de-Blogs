@@ -31,10 +31,19 @@ const searchPostByParams = async (req, res) => {
     return res.status(200).json(post);
 };
 
+const insertPost = async (req, res) => {
+    const post = req.body;
+    const token = req.headers.authorization;
+    const { type, message } = await blogPostService.insertPost(post, token);
+    if (type) return res.status(400).json({ message });
+    return res.status(201).json(message);
+};
+
 module.exports = {
     getAllPosts,
     getPostById,
     updatePost,
     deletePost,
     searchPostByParams,
+    insertPost,
 };

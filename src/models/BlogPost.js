@@ -10,8 +10,16 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.INTEGER,
       content: DataTypes.STRING,
       title: DataTypes.STRING,
-      published: DataTypes.DATE,
-      updated: DataTypes.DATE,
+      published: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+
+      },
+      updated: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW
+
+      }
     },
     {
       underscored: true,

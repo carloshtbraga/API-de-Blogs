@@ -15,11 +15,6 @@ const tokenGenerator = (email) => {
   return token;
 };
 
-const verifier = (token) => {
-  const user = jwt.verify(token, process.env.JWT_SECRET);
-  return user;
-}; 
-
 const tokenVerifier = (req, res, next) => {
   const token = req.headers.authorization;
   if (!token) {
@@ -27,11 +22,11 @@ const tokenVerifier = (req, res, next) => {
   }
   try {
     const payload = jwt.verify(token, JWT_SECRET);
-    req.headers.Authorization = payload;
+    req.user = payload;
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Expired or invalid token' });
   }
 };
 
-module.exports = { tokenGenerator, tokenVerifier, verifier };
+module.exports = { tokenGenerator, tokenVerifier };
